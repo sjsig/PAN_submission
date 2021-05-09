@@ -10,7 +10,7 @@ import argparse
 from transformers import pipeline
 
 
-def parseData(lang="en", remove_emojis=False, convert_emojis=False, lowercase=False, model="XLNet", pct_to_remove=0, args=None):
+def parseData(lang="en", remove_emojis=False, convert_emojis=False, lowercase=False, model="XLNet", pct_to_remove=0, args=None, save_directory="processed_data"):
     truth = open(os.path.join(args.base_dir, f'{args.data_dir}/{lang}/truth.txt'), 'r')
     authors = []
     data = []
@@ -36,7 +36,7 @@ def parseData(lang="en", remove_emojis=False, convert_emojis=False, lowercase=Fa
         data.append(author_data)
         index += 1
     
-    text_file = open(os.path.join(args.base_dir, f'raw_data/{lang}/data.json'), "w")
+    text_file = open(os.path.join(args.base_dir, f'{save_directory}/{lang}/data.json'), "w")
     n = text_file.write(json.dumps(data, indent=4))
     text_file.close()
     
@@ -79,13 +79,15 @@ def processTweet(tweet, lang="en", remove_emojis=False, convert_emojis=False, lo
 
 
 def parseRawData(lang="en", remove_emojis=False, convert_emojis=False, lowercase=False, model="XLNet", save_directory="processed_data", save_file=False, pct_to_remove=0, args=None):
-    data = parseData(lang, remove_emojis, convert_emojis, lowercase, model, pct_to_remove, args)
-    json_data = json.dumps(data, indent=4)
+    
     
     if not os.path.exists(save_directory):
         os.mkdir(save_directory)
     if not save_file:
         save_file = os.path.join(args.base_dir, f"{save_directory}/{lang}.json")
+
+    data = parseData(lang, remove_emojis, convert_emojis, lowercase, model, pct_to_remove, args, save_directory)
+    json_data = json.dumps(data, indent=4)
     
     text_file = open(save_file, "w")
     n = text_file.write(json_data)
