@@ -131,8 +131,8 @@ def createSet(saveDirectory, parsedFile, model, lang):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_dir', default="./data")
-    parser.add_argument('--base_dir', default="./")
+    parser.add_argument('--data_dir', type=str, default="./data")
+    parser.add_argument('--base_dir', type=str, default="./")
     args = parser.parse_args()
 
     lang="en"
