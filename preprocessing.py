@@ -10,7 +10,7 @@ import argparse
 from transformers import pipeline
 
 
-def parseData(lang="en", remove_emojis=False, convert_emojis=False, lowercase=False, model="XLNet", pct_to_remove=0, args=None, save_directory="processed_data"):
+def parseData(lang="en", remove_emojis=False, convert_emojis=False, lowercase=False, model="XLNet", pct_to_remove=0, args=None, save_file=""):
     truth = open(os.path.join(args.base_dir, f'{args.data_dir}/{lang}/truth.txt'), 'r')
     authors = []
     data = []
@@ -36,7 +36,7 @@ def parseData(lang="en", remove_emojis=False, convert_emojis=False, lowercase=Fa
         data.append(author_data)
         index += 1
     
-    text_file = open(f'{save_directory}/{lang}/data.json', "w")
+    text_file = open(save_file, "w")
     n = text_file.write(json.dumps(data, indent=4))
     text_file.close()
     
@@ -80,13 +80,10 @@ def processTweet(tweet, lang="en", remove_emojis=False, convert_emojis=False, lo
 
 def parseRawData(lang="en", remove_emojis=False, convert_emojis=False, lowercase=False, model="XLNet", save_directory="processed_data", save_file=False, pct_to_remove=0, args=None):
     
-    
-    if not os.path.exists(save_directory):
-        os.mkdir(save_directory)
     if not save_file:
-        save_file = os.path.join(args.base_dir, f"{save_directory}/{lang}.json")
+        save_file = os.path.join(args.base_dir, f"{save_directory}/data.json")
 
-    data = parseData(lang, remove_emojis, convert_emojis, lowercase, model, pct_to_remove, args, save_directory)
+    data = parseData(lang, remove_emojis, convert_emojis, lowercase, model, pct_to_remove, args, save_file)
     json_data = json.dumps(data, indent=4)
     
     text_file = open(save_file, "w")
@@ -134,16 +131,20 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     lang="en"
-    save_directory = "processed_data"
+    save_directory = f"processed_data/{lang}"
     save_directory = os.path.join(args.base_dir, save_directory)
-    save_file = f"{save_directory}/{lang}.json"
+    if not os.path.exists(save_directory):
+        os.mkdirs(save_directory)
+    save_file = f"{save_directory}/data.json"
     parseRawData(lang=lang, lowercase=True,  remove_emojis=True, save_directory=save_directory, save_file=save_file, args=args) 
     createSet(save_directory, save_file, "XLNet", lang)
 
     lang="es"
-    save_directory = "processed_data"
+    save_directory = f"processed_data/{lang}"
     save_directory = os.path.join(args.base_dir, save_directory)
-    save_file = f"{save_directory}/{lang}.json"
+    if not os.path.exists(save_directory):
+        os.mkdirs(save_directory)
+    save_file = f"{save_directory}/data.json"
     parseRawData(lang=lang, lowercase=True,  remove_emojis=True, save_directory=save_directory, save_file=save_file, args=args) 
     createSet(save_directory, save_file, "XLNet", lang)
     
