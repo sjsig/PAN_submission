@@ -29,10 +29,6 @@ def parseData(lang="en", remove_emojis=False, convert_emojis=False, lowercase=Fa
         author_data["class"] = int(root.attrib["class"])
         author_data["lang"] = root.attrib["lang"]
         author_data["posts"] = []
-        if(index < len(authors)*pct_val):
-            author_data["set"] = 'test'
-        else:
-            author_data["set"] = 'train'
         
         for document in root.find('documents'):
             author_data["posts"].append(processTweet(document.text, lang, remove_emojis, convert_emojis, lowercase))
