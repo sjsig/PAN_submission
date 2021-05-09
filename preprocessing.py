@@ -36,7 +36,7 @@ def parseData(lang="en", remove_emojis=False, convert_emojis=False, lowercase=Fa
         data.append(author_data)
         index += 1
     
-    text_file = open(os.path.join(args.base_dir, f'{save_directory}/{lang}/data.json'), "w")
+    text_file = open(f'{save_directory}/{lang}/data.json', "w")
     n = text_file.write(json.dumps(data, indent=4))
     text_file.close()
     
