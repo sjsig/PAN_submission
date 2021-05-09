@@ -1,0 +1,15 @@
+twitter:
+   data_format: PremiseOnly
+   enable_san: false
+   labels:
+      - notHate
+      - hate
+   metric_meta:
+      - ACC
+   loss: CeCriterion
+   kd_loss: MseCriterion
+   adv_loss: SymKlCriterion
+   n_class: 2
+   task_type: Classification
+   split_names:
+      - test

@@ -111,7 +111,7 @@ def createSet(saveDirectory, parsedFile, model, lang):
         else:
             raise Exception("Enter either XLNet or BERT as model")
 
-    test_file = f'{save_directory}/{lang}_test.tsv'
+    test_file = f'{save_directory}/twitter_test.tsv'
 
     with open(test_file, 'w') as the_file:
         for i in range(len(test)):

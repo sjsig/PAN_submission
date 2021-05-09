@@ -2,8 +2,14 @@
 
 input_dataset=$1
 output_dir=$2
-destination_folder='~/PAN_submission'
+destination_folder=~/PAN_submission
+model=xlnet-base-cased
+en_dir=../processed_data/en
+es_dir=../processed_data/es
+task_def=./twitter_task_def.yml
 
 # Process xml files 
 python3 preprocessing.py --data_dir ${input_dataset}
+
+python3 mt-dnn/prepro_std.py --model ${model} --root_dir ${en_dir} --task_def ${task_def}
 
