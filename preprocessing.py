@@ -134,7 +134,7 @@ if __name__ == '__main__':
     save_directory = f"processed_data/{lang}"
     save_directory = os.path.join(args.base_dir, save_directory)
     if not os.path.exists(save_directory):
-        os.path.mkdirs(save_directory)
+        os.makedirs(save_directory)
     save_file = f"{save_directory}/data.json"
     parseRawData(lang=lang, lowercase=True,  remove_emojis=True, save_directory=save_directory, save_file=save_file, args=args) 
     createSet(save_directory, save_file, "XLNet", lang)
@@ -143,7 +143,7 @@ if __name__ == '__main__':
     save_directory = f"processed_data/{lang}"
     save_directory = os.path.join(args.base_dir, save_directory)
     if not os.path.exists(save_directory):
-        os.path.mkdirs(save_directory)
+        os.makedirs(save_directory)
     save_file = f"{save_directory}/data.json"
     parseRawData(lang=lang, lowercase=True,  remove_emojis=True, save_directory=save_directory, save_file=save_file, args=args) 
     createSet(save_directory, save_file, "XLNet", lang)
