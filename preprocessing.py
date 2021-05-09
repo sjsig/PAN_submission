@@ -83,7 +83,7 @@ def processTweet(tweet, lang="en", remove_emojis=False, convert_emojis=False, lo
 
 
 def parseRawData(lang="en", remove_emojis=False, convert_emojis=False, lowercase=False, model="XLNet", save_directory="processed_data", save_file=False, pct_to_remove=0, args=None):
-    data = parseData(lang, remove_emojis, convert_emojis, lowercase, model, pct_to_remove, base_dir, pct_val)
+    data = parseData(lang, remove_emojis, convert_emojis, lowercase, model, pct_to_remove, args)
     json_data = json.dumps(data, indent=4)
     
     if not os.path.exists(save_directory):
