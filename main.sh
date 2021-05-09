@@ -1,4 +1,4 @@
-
+#!/bin/sh
 
 input_dataset=$1
 output_dir=$2
