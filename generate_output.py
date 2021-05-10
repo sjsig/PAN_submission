@@ -15,4 +15,7 @@ if __name__ == '__main__':
     parser.add_argument('--results_dir', type=str, default="./results")
     args = parser.parse_args()
 
+    if(os.path.exists(output_dir)):
+        os.makedirs(output_dir)
+
     generate_output(args.output_dir, args.results_dir, 'en')
