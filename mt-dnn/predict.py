@@ -65,6 +65,8 @@ config['answer_opt'] = 0
 config['adv_train'] = False
 del state_dict['optimizer']
 
+print(config)
+
 config = namedtuple("Config", config.keys())(*config.values())
 model = MTDNNModel(config, state_dict=state_dict)
 encoder_type = config.get('encoder_type', EncoderModelType.BERT)
