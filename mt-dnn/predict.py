@@ -90,6 +90,7 @@ test_data = DataLoader(test_data_set, batch_size=args.batch_size_eval, collate_f
 with torch.no_grad():
     test_metrics, test_predictions, scores, golds, test_ids = eval_model(model, test_data,
                                                                          metric_meta=metric_meta,
+                                                                         device='cpu', 
                                                                          with_label=args.with_label)
 
     results = {'metrics': test_metrics, 'predictions': test_predictions, 'uids': test_ids, 'scores': scores}
