@@ -65,7 +65,7 @@ config['answer_opt'] = 0
 config['adv_train'] = False
 del state_dict['optimizer']
 
-print(config)
+print(config.keys())
 
 config = namedtuple("Config", config.keys())(*config.values())
 model = MTDNNModel(config, state_dict=state_dict)
