@@ -22,7 +22,7 @@ def dump(path, data):
 parser = argparse.ArgumentParser()
 parser.add_argument("--task_def", type=str, default="experiments/glue/glue_task_def.yml")
 parser.add_argument("--task", type=str)
-parser.add_argument("--task_id", type=int, help="the id of this task when training")
+parser.add_argument("--task_id", type=int, default='1', help="the id of this task when training")
 parser.add_argument("--encoder_type", type=int, default=3)
 
 parser.add_argument("--prep_input", type=str)
