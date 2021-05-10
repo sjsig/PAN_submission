@@ -9,10 +9,11 @@ data_path = './processed_data/en/data.json'
 with open(data_path) as json_file:
     data = json.load(json_file)
 
-model = torch.load(model_path)
-model.eval()
 
-# model = AutoModelForSequenceClassification.from_pretrained(model_name, state_dict=state_dict)
+
+model = AutoModelForSequenceClassification.from_pretrained(model_name)
+model.load(model_path)
+model.eval()
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 for author in data:
