@@ -16,7 +16,7 @@ with open(data_path) as json_file:
 # device = torch.device('cuda', 1)
 # state_dict = torch.load(model_path, map_location=device)
 
-print("trying", os.parth.exists(model_path))
+print("trying", os.path.exists(model_path))
 model_state_dict = torch.load(checkpoint)
 print(model_state_dict)
 
