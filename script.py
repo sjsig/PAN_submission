@@ -21,10 +21,9 @@ model_state_dict = torch.load(model_path)
 print('Model dict')
 print(model_state_dict)
 
+model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
-model = XLNetModel(XLNetConfig())
-model.load_state_dict(torch.load(model_path))
-model.eval()
+model.load_state_dict(model_state_dict["state_dict"])
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 for author in data:
