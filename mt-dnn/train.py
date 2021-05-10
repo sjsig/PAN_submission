@@ -470,7 +470,9 @@ def main():
         print_message(logger, '[new test scores at {} saved.]'.format(epoch))
         if args.local_rank in [-1, 0]:
             model_file = os.path.join(output_dir, 'model_{}.pt'.format(epoch))
+            model_file_2= os.path.join(output_dir, 'hf_model_{}.pt'.format(epoch))
             model.save(model_file)
+            model.save_pretrained(model_file_2)
     if args.tensorboard:
         tensorboard.close()
 

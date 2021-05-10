@@ -1,6 +1,7 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, XLNetConfig, XLNetModel
 import torch
 import json
+import os
 
 model_name = "xlnet-base-cased"
 model_path = './models/en.pt'
@@ -12,7 +13,12 @@ with open(data_path) as json_file:
 
 
 # model = AutoModelForSequenceClassification.from_pretrained(model_path)
-# model.load(model_path)
+# device = torch.device('cuda', 1)
+# state_dict = torch.load(model_path, map_location=device)
+
+print("trying", os.parth.exists(model_path))
+model_state_dict = torch.load(checkpoint)
+print(model_state_dict)
 
 
 model = XLNetModel(XLNetConfig())
