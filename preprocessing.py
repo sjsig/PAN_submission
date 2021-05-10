@@ -114,7 +114,7 @@ def createSet(saveDirectory, parsedFile, model, lang):
     test_file = f'{save_directory}/twitter_test.tsv'
     data_file = f'{save_directory}/twitter_test.json'
 
-    json_data = json.dumps(test, indent=4)
+    json_data = json.dumps(test[:10], indent=4) ## CHANGTE THIS BACK
     text_file = open(data_file, "w")
     n = text_file.write(json_data)
     text_file.close()
