@@ -22,6 +22,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--task_def", type=str, default="experiments/glue/glue_task_def.yml")
 parser.add_argument("--task", type=str)
 parser.add_argument("--task_id", type=int, help="the id of this task when training")
+parser.add_argument("--encoder_type", type=int, default=3)
 
 parser.add_argument("--prep_input", type=str)
 parser.add_argument("--with_label", action="store_true")
@@ -68,7 +69,13 @@ del state_dict['optimizer']
 print(config.keys())
 del config["_name_or_path"]
 
-config = namedtuple("Config", config.keys())(*config.values())
+if opt['encoder_type'] not in EncoderModelType._value2member_map_:
+    raise ValueError("encoder_type is out of pre-defined types")
+literal_encoder_type = EncoderModelType(args.encoder_type).name.lower()
+config_class, model_class, tokenizer_class = MODEL_CLASSES[literal_encoder_type]
+config = config_class.from_pretrained(init_model).to_dict()
+
+# config = namedtuple("Config", config.keys())(*config.values())
 model = MTDNNModel(config, state_dict=state_dict)
 encoder_type = config.get('encoder_type', EncoderModelType.BERT)
 # load data
