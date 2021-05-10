@@ -69,7 +69,7 @@ del state_dict['optimizer']
 print(config.keys())
 del config["_name_or_path"]
 
-if opt['encoder_type'] not in EncoderModelType._value2member_map_:
+if args.encoder_type not in EncoderModelType._value2member_map_:
     raise ValueError("encoder_type is out of pre-defined types")
 literal_encoder_type = EncoderModelType(args.encoder_type).name.lower()
 config_class, model_class, tokenizer_class = MODEL_CLASSES[literal_encoder_type]
