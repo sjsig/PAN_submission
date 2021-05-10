@@ -66,6 +66,7 @@ config['adv_train'] = False
 del state_dict['optimizer']
 
 print(config.keys())
+del config["_name_or_path"]
 
 config = namedtuple("Config", config.keys())(*config.values())
 model = MTDNNModel(config, state_dict=state_dict)
