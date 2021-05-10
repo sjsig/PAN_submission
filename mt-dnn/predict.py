@@ -75,8 +75,8 @@ del state_dict['optimizer']
 # literal_encoder_type = EncoderModelType(args.encoder_type).name.lower()
 config_class, model_class, tokenizer_class = (XLNetConfig, XLNetModel, XLNetTokenizer)
 xlnet_config = config_class.from_pretrained("xlnet-base-cased").to_dict()
-print(xlnet_config["num_hidden_layers"])
-
+# print(xlnet_config["num_hidden_layers"])
+del config["num_hidden_layers"]
 # opt = vars(args)
 # opt.update(config)
 # # config = namedtuple("Config", config.keys())(*config.values())
