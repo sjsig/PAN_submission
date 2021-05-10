@@ -12,6 +12,8 @@ from mt_dnn.model import MTDNNModel
 from data_utils.metrics import calc_metrics
 from mt_dnn.inference import eval_model
 
+from collections import namedtuple
+
 def dump(path, data):
     with open(path, 'w') as f:
         json.dump(data, f)
