@@ -1,4 +1,4 @@
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, XLNetConfig, XLNetModel
 import torch
 import json
 
@@ -11,8 +11,12 @@ with open(data_path) as json_file:
 
 
 
-model = AutoModelForSequenceClassification.from_pretrained(model_path)
+# model = AutoModelForSequenceClassification.from_pretrained(model_path)
 # model.load(model_path)
+
+
+model = XLNetModel(XLNetConfig())
+model.load_state_dict(torch.load(model_path))
 model.eval()
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
