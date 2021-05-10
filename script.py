@@ -11,8 +11,8 @@ with open(data_path) as json_file:
 
 
 
-model = AutoModelForSequenceClassification.from_pretrained(model_name)
-model.load(model_path)
+model = AutoModelForSequenceClassification.from_pretrained(model_path)
+# model.load(model_path)
 model.eval()
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
