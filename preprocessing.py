@@ -26,7 +26,10 @@ def parseData(lang="en", remove_emojis=False, convert_emojis=False, lowercase=Fa
         root = tree.getroot()
         author_data = dict()
         author_data["author"] = author 
-        author_data["class"] = int(root.attrib["class"])
+        if("class" in root.attrib):
+            author_data["class"] = int(root.attrib["class"])
+        else:
+            author_data["class"] = 0
         author_data["lang"] = root.attrib["lang"]
         author_data["posts"] = []
         
@@ -37,7 +40,7 @@ def parseData(lang="en", remove_emojis=False, convert_emojis=False, lowercase=Fa
         index += 1
     
     text_file = open(save_file, "w")
-    n = text_file.write(json.dumps(data, indent=4))
+    n = text_file.write(json.dumps(data))
     text_file.close()
     
     return data
@@ -84,7 +87,7 @@ def parseRawData(lang="en", remove_emojis=False, convert_emojis=False, lowercase
         save_file = os.path.join(args.base_dir, f"{save_directory}/data.json")
 
     data = parseData(lang, remove_emojis, convert_emojis, lowercase, model, pct_to_remove, args, save_file)
-    json_data = json.dumps(data, indent=4)
+    json_data = json.dumps(data)
     
     text_file = open(save_file, "w")
     n = text_file.write(json_data)
@@ -114,13 +117,13 @@ def createSet(saveDirectory, parsedFile, model, lang):
     test_file = f'{save_directory}/twitter_test.tsv'
     data_file = f'{save_directory}/twitter_test.json'
 
-    json_data = json.dumps(test[:10], indent=4) ## CHANGTE THIS BACK
+    json_data = json.dumps(test)
     text_file = open(data_file, "w")
     n = text_file.write(json_data)
     text_file.close()
 
     with open(test_file, 'w') as the_file:
-        for i in range(min(len(test), 10)):
+        for i in range(min(len(test), 10)): # CHange back
             label = ''
             if(test[i]['class']==0):
                 label = 'notHate'
