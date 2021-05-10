@@ -1,4 +1,4 @@
-from transformers import *
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 import json
 
