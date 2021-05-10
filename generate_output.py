@@ -10,6 +10,12 @@ def generate_output(output_dir, results_dir, lang):
     print(results["predictions"])
     print(results["uids"])
 
+    for a in range(len(results["uids"])):
+        author_file = os.path.join(output_dir, f'{results["uids"][a]}.xml')
+        with open(author_file, 'w') as the_file:
+            the_file.write(f"<author id={results['uids'][a]} lang={lang} type={results['predictions'][a]}")
+        the_file.close()
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
