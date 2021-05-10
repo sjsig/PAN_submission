@@ -112,6 +112,12 @@ def createSet(saveDirectory, parsedFile, model, lang):
             raise Exception("Enter either XLNet or BERT as model")
 
     test_file = f'{save_directory}/twitter_test.tsv'
+    data_file = f'{save_directory}/twitter_test.json'
+
+    json_data = json.dumps(test, indent=4)
+    text_file = open(data_file, "w")
+    n = text_file.write(json_data)
+    text_file.close()
 
     with open(test_file, 'w') as the_file:
         for i in range(len(test)):
