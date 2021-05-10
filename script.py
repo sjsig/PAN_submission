@@ -17,7 +17,7 @@ with open(data_path) as json_file:
 # state_dict = torch.load(model_path, map_location=device)
 
 print("trying", os.path.exists(model_path))
-model_state_dict = torch.load(model_path)
+model_state_dict = torch.load(model_path, map_location='cpu')
 print(model_state_dict)
 
 
