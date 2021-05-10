@@ -1,5 +1,7 @@
 import os
 import json
+import argparse 
+
 def generate_output(output_dir, results_dir, lang):
     
     result_file = os.path.join(results_dir, f'{lang}.json')
