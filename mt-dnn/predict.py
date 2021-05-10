@@ -73,7 +73,7 @@ del config["_name_or_path"]
 if args.encoder_type not in EncoderModelType._value2member_map_:
     raise ValueError("encoder_type is out of pre-defined types")
 literal_encoder_type = EncoderModelType(args.encoder_type).name.lower()
-config_class, model_class, tokenizer_class = (XLMRobertaConfig, XLMRobertaModel, XLMRobertaTokenizer)
+config_class, model_class, tokenizer_class = (XLNetConfig, XLNetModel, XLNetTokenizer)
 config = config_class.from_pretrained("xlnet-base-cased").to_dict()
 
 opt = vars(args)
