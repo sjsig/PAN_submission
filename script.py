@@ -4,7 +4,7 @@ import json
 import os
 
 model_name = "xlnet-base-cased"
-model_path = './models/en.pt'
+model_path = './models/hf_model_0.pt'
 data_path = './processed_data/en/data.json'
 
 with open(data_path) as json_file:
@@ -17,7 +17,8 @@ with open(data_path) as json_file:
 # state_dict = torch.load(model_path, map_location=device)
 
 print("trying", os.path.exists(model_path))
-model_state_dict = torch.load(model_path, map_location='cpu')
+model_state_dict = torch.load(model_path)
+print('Model dict')
 print(model_state_dict)
 
 
