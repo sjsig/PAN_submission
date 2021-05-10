@@ -19,7 +19,7 @@ with open(data_path) as json_file:
 print("trying", os.path.exists(model_path))
 model_state_dict = torch.load(model_path)
 print('Model dict')
-print(model_state_dict)
+# print(model_state_dict)
 
 model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
