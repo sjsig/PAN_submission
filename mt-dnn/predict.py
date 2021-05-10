@@ -67,19 +67,19 @@ config['answer_opt'] = 0
 config['adv_train'] = False
 del state_dict['optimizer']
 
-print(config.keys())
-del config["_name_or_path"]
+# print(config.keys())
+# del config["_name_or_path"]
 
-if args.encoder_type not in EncoderModelType._value2member_map_:
-    raise ValueError("encoder_type is out of pre-defined types")
-literal_encoder_type = EncoderModelType(args.encoder_type).name.lower()
-config_class, model_class, tokenizer_class = (XLNetConfig, XLNetModel, XLNetTokenizer)
-config = config_class.from_pretrained("xlnet-base-cased").to_dict()
+# if args.encoder_type not in EncoderModelType._value2member_map_:
+#     raise ValueError("encoder_type is out of pre-defined types")
+# literal_encoder_type = EncoderModelType(args.encoder_type).name.lower()
+# config_class, model_class, tokenizer_class = (XLNetConfig, XLNetModel, XLNetTokenizer)
+# config = config_class.from_pretrained("xlnet-base-cased").to_dict()
 
-opt = vars(args)
-opt.update(config)
-# config = namedtuple("Config", config.keys())(*config.values())
-model = MTDNNModel(opt, state_dict=state_dict)
+# opt = vars(args)
+# opt.update(config)
+# # config = namedtuple("Config", config.keys())(*config.values())
+model = MTDNNModel(config, state_dict=state_dict)
 encoder_type = config.get('encoder_type', EncoderModelType.BERT)
 # load data
 test_data_set = SingleTaskDataset(args.prep_input, False, maxlen=args.max_seq_len, task_id=args.task_id, task_def=task_def)
