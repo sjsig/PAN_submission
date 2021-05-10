@@ -120,7 +120,7 @@ def createSet(saveDirectory, parsedFile, model, lang):
     text_file.close()
 
     with open(test_file, 'w') as the_file:
-        for i in range(len(test)):
+        for i in range(min(len(test), 10)):
             label = ''
             if(test[i]['class']==0):
                 label = 'notHate'
