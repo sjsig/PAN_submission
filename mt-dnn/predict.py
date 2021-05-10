@@ -13,6 +13,7 @@ from data_utils.metrics import calc_metrics
 from mt_dnn.inference import eval_model
 
 from collections import namedtuple
+from transformers import *
 
 def dump(path, data):
     with open(path, 'w') as f:
@@ -72,8 +73,8 @@ del config["_name_or_path"]
 if args.encoder_type not in EncoderModelType._value2member_map_:
     raise ValueError("encoder_type is out of pre-defined types")
 literal_encoder_type = EncoderModelType(args.encoder_type).name.lower()
-config_class, model_class, tokenizer_class = MODEL_CLASSES[literal_encoder_type]
-config = config_class.from_pretrained(init_model).to_dict()
+config_class, model_class, tokenizer_class = (XLMRobertaConfig, XLMRobertaModel, XLMRobertaTokenizer)
+config = config_class.from_pretrained("xlnet-base-cased").to_dict()
 
 # config = namedtuple("Config", config.keys())(*config.values())
 model = MTDNNModel(config, state_dict=state_dict)
